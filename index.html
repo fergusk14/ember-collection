@@ -857,17 +857,21 @@ body.dark-mode .empty-state h3 {
         <span style="font-size: 20px; margin-right: 4px;">📷</span> Scan Barcode
       </button>
     </div>
-    <div id="scannerContainer" style="display: none; margin-top: 16px; background: #000; padding: 20px; border-radius: 12px;">
-      <div id="interactive" class="viewport" style="position: relative; width: 100%; max-width: 500px; height: 400px; margin: 0 auto; overflow: hidden;">
-        <video id="scannerVideo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;"></video>
-        <canvas class="drawingBuffer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
+    <div id="scannerContainer" style="display: none; margin-top: 16px; background: #f5f5f5; padding: 20px; border-radius: 12px;">
+      <div style="text-align: center; margin-bottom: 12px; color: #1d1d1f; font-size: 14px;">
+        📷 Take a photo of the barcode or enter ISBN manually
       </div>
-      <div style="text-align: center; margin-top: 12px; color: white; font-size: 14px;">
-        Point camera at book barcode
+      <input type="file" id="barcodeImageInput" accept="image/*" capture="environment" style="display: none;" onchange="processBarcodeImage(event)">
+      <button onclick="document.getElementById('barcodeImageInput').click()" style="width: 100%; margin-bottom: 12px;">
+        📸 Take Photo of Barcode
+      </button>
+      <div style="margin: 12px 0; text-align: center; color: #86868b;">or</div>
+      <input type="text" id="manualISBN" placeholder="Enter ISBN manually (e.g., 9780143127741)" style="width: 100%; padding: 14px 16px; border: 2px solid rgba(90, 63, 160, 0.2); border-radius: 12px; font-size: 16px; outline: none; margin-bottom: 12px;">
+      <div style="display: flex; gap: 12px;">
+        <button onclick="searchManualISBN()" style="flex: 1;">Search ISBN</button>
+        <button class="secondary-btn" onclick="stopBarcodeScanner()" style="flex: 1;">Cancel</button>
       </div>
-      <div style="text-align: center; margin-top: 12px;">
-        <button class="secondary-btn" onclick="stopBarcodeScanner()">Stop Scanning</button>
-      </div>
+      <canvas id="barcodeCanvas" style="display: none;"></canvas>
     </div>
     <div id="searchResults"></div>
   </div>
@@ -2357,69 +2361,70 @@ let isScanning = false;
 
 async function startBarcodeScanner() {
   const scannerContainer = document.getElementById('scannerContainer');
-  const interactive = document.getElementById('interactive');
   const searchResults = document.getElementById('searchResults');
   
   searchResults.innerHTML = '';
   scannerContainer.style.display = 'block';
-  isScanning = true;
-
-  try {
-    await Quagga.init({
-      inputStream: {
-        name: "Live",
-        type: "LiveStream",
-        target: interactive,
-        constraints: {
-          width: 640,
-          height: 480,
-          facingMode: "environment"
-        }
-      },
-      decoder: {
-        readers: [
-          "ean_reader",
-          "ean_8_reader",
-          "code_128_reader",
-          "code_39_reader",
-          "upc_reader",
-          "upc_e_reader"
-        ]
-      },
-      locate: true
-    }, function(err) {
-      if (err) {
-        console.error(err);
-        alert('Camera access denied or not available. Please ensure your browser has camera permissions.');
-        stopBarcodeScanner();
-        return;
-      }
-      Quagga.start();
-    });
-
-    Quagga.onDetected(async (result) => {
-      if (!isScanning) return;
-      
-      const code = result.codeResult.code;
-      console.log('Barcode detected:', code);
-      
-      Quagga.stop();
-      scannerContainer.style.display = 'none';
-      isScanning = false;
-      
-      await searchByISBN(code);
-    });
-  } catch (err) {
-    console.error('Scanner error:', err);
-    alert('Failed to start camera. Please check permissions.');
-    stopBarcodeScanner();
-  }
+  document.getElementById('manualISBN').value = '';
 }
 
 function stopBarcodeScanner() {
-  isScanning = false;
-  Quagga.stop();
   document.getElementById('scannerContainer').style.display = 'none';
+  document.getElementById('manualISBN').value = '';
+}
+
+async function searchManualISBN() {
+  const isbn = document.getElementById('manualISBN').value.trim().replace(/[-\s]/g, '');
+  if (!isbn) {
+    alert('Please enter an ISBN');
+    return;
+  }
+  stopBarcodeScanner();
+  await searchByISBN(isbn);
+}
+
+async function processBarcodeImage(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const canvas = document.getElementById('barcodeCanvas');
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+
+  img.onload = async function() {
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0);
+
+    try {
+      // Use QuaggaJS to decode from image
+      const result = await new Promise((resolve, reject) => {
+        Quagga.decodeSingle({
+          src: canvas.toDataURL(),
+          numOfWorkers: 0,
+          decoder: {
+            readers: ["ean_reader", "ean_8_reader", "code_128_reader", "upc_reader"]
+          },
+          locate: true
+        }, function(result) {
+          if (result && result.codeResult) {
+            resolve(result.codeResult.code);
+          } else {
+            reject(new Error('No barcode found'));
+          }
+        });
+      });
+
+      console.log('Barcode detected:', result);
+      stopBarcodeScanner();
+      await searchByISBN(result);
+    } catch (err) {
+      console.error('Barcode detection failed:', err);
+      alert('Could not detect barcode in image. Please try again or enter ISBN manually.');
+    }
+  };
+
+  img.src = URL.createObjectURL(file);
 }
 
 async function searchByISBN(isbn) {
