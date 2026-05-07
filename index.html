@@ -19,9 +19,9 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: linear-gradient(135deg, #5A3FA0 0%, #7A5FD0 100%);
+  background: #2F2F3A;
   min-height: 100vh;
-  color: #1d1d1f;
+  color: #F7F7FB;
   line-height: 1.6;
   position: relative;
 }
@@ -34,8 +34,9 @@ body::before {
   right: 0;
   bottom: 0;
   background-image: 
-    radial-gradient(circle at 20% 50%, rgba(255, 184, 71, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(199, 143, 255, 0.08) 0%, transparent 50%);
+    radial-gradient(circle at 20% 20%, rgba(255, 184, 71, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(122, 95, 208, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(255, 122, 107, 0.04) 0%, transparent 40%);
   pointer-events: none;
   z-index: 0;
 }
@@ -48,43 +49,46 @@ body::before {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2px 20px 20px 20px;
 }
 
 header {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 30px 0;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(44, 44, 58, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(122, 95, 208, 0.15);
+  padding: 2px 0;
+  margin-bottom: 0;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2), 0 0 40px rgba(255, 184, 71, 0.05);
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
-  margin-bottom: 8px;
-  background: linear-gradient(135deg, #5A3FA0 0%, #7A5FD0 100%);
+  margin-bottom: 6px;
+  background: linear-gradient(135deg, #FFB847 0%, #FFC976 50%, #C98FFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: -0.5px;
 }
 
 .subtitle {
-  color: #86868b;
-  font-size: 16px;
+  color: #C98FFF;
+  font-size: 14px;
+  opacity: 0.9;
+  font-weight: 500;
 }
 
 .search-section {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 28px;
-  margin-bottom: 30px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(44, 44, 58, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(122, 95, 208, 0.1);
+  border: 1px solid rgba(122, 95, 208, 0.15);
 }
 
 .search-box {
@@ -96,36 +100,42 @@ h1 {
 #searchInput {
   flex: 1;
   padding: 14px 18px;
-  border: 2px solid rgba(90, 63, 160, 0.2);
-  border-radius: 12px;
+  border: 2px solid rgba(122, 95, 208, 0.2);
+  border-radius: 16px;
   font-size: 16px;
   outline: none;
   transition: all 0.3s ease;
-  background: white;
+  background: rgba(28, 28, 40, 0.4);
+  color: #F7F7FB;
+}
+
+#searchInput::placeholder {
+  color: rgba(247, 247, 251, 0.4);
 }
 
 #searchInput:focus {
-  border-color: #5A3FA0;
-  box-shadow: 0 0 0 4px rgba(90, 63, 160, 0.1);
+  border-color: #FFB847;
+  box-shadow: 0 0 0 4px rgba(255, 184, 71, 0.15), 0 4px 12px rgba(255, 184, 71, 0.2);
   transform: translateY(-1px);
+  background: rgba(28, 28, 40, 0.6);
 }
 
 button {
   padding: 14px 28px;
-  background: linear-gradient(135deg, #5A3FA0 0%, #7A5FD0 100%);
+  background: linear-gradient(135deg, #FFB847 0%, #FF7A6B 100%);
   color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: 16px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(90, 63, 160, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(255, 122, 107, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(90, 63, 160, 0.5);
+  box-shadow: 0 6px 20px rgba(255, 184, 71, 0.4), 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 button:active {
@@ -133,56 +143,58 @@ button:active {
 }
 
 .secondary-btn {
-  background: rgba(255, 255, 255, 0.9);
-  color: #5A3FA0;
-  border: 2px solid rgba(90, 63, 160, 0.3);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: rgba(44, 44, 58, 0.6);
+  color: #FFB847;
+  border: 2px solid rgba(255, 184, 71, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .secondary-btn:hover {
-  background: white;
-  border-color: #5A3FA0;
+  background: rgba(44, 44, 58, 0.8);
+  border-color: #FFB847;
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 184, 71, 0.2);
 }
 
 .tabs {
   display: flex;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 8px;
-  margin-bottom: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  gap: 8px;
+  background: rgba(44, 44, 58, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 6px;
+  margin-top: -16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(122, 95, 208, 0.1);
+  border: 1px solid rgba(122, 95, 208, 0.15);
   flex-wrap: wrap;
   overflow-x: auto;
 }
 
 .tab {
-  padding: 12px 24px;
+  padding: 10px 20px;
   background: transparent;
-  color: #86868b;
+  color: rgba(247, 247, 251, 0.6);
   border: none;
-  border-radius: 10px;
+  border-radius: 14px;
   cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .tab.active {
-  background: linear-gradient(135deg, #5A3FA0 0%, #7A5FD0 100%);
+  background: linear-gradient(135deg, #FFB847 0%, #FF7A6B 100%);
   color: white;
-  box-shadow: 0 4px 12px rgba(90, 63, 160, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 122, 107, 0.4), 0 0 20px rgba(255, 184, 71, 0.2);
 }
 
 .tab:hover:not(.active) {
-  background: rgba(90, 63, 160, 0.1);
-  color: #5A3FA0;
+  background: rgba(255, 184, 71, 0.1);
+  color: #FFB847;
 }
 
 .search-results {
@@ -194,30 +206,60 @@ button:active {
 .books-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 20px;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  
+  .tab-text {
+    display: none;
+  }
+  
+  .tab-icon {
+    font-size: 18px;
+  }
+  
+  .tab {
+    padding: 10px 12px;
+  }
+  
+  .search-section {
+    padding: 16px;
+  }
+  
+  header {
+    padding: 0;
+    margin-bottom: 0;
+  }
 }
 
 .book-card {
-  background: white;
-  border-radius: 16px;
+  background: rgba(44, 44, 58, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(122, 95, 208, 0.1);
+  border: 1px solid rgba(122, 95, 208, 0.15);
 }
 
 .book-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 12px 40px rgba(90, 63, 160, 0.2);
-  border-color: rgba(90, 63, 160, 0.3);
+  box-shadow: 0 12px 40px rgba(255, 184, 71, 0.2), 0 0 30px rgba(255, 122, 107, 0.15);
+  border-color: rgba(255, 184, 71, 0.3);
 }
 
 .book-cover {
   width: 100%;
   height: 240px;
   object-fit: cover;
-  background: linear-gradient(135deg, #5A3FA0 0%, #7A5FD0 100%);
+  background: linear-gradient(135deg, #5A3FA0 0%, #7A5FD0 50%, #FFB847 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -245,28 +287,31 @@ button:active {
 
 .book-info {
   padding: 16px;
+  background: linear-gradient(180deg, rgba(44, 44, 58, 0) 0%, rgba(44, 44, 58, 0.3) 100%);
 }
 
 .book-title {
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 6px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  color: #1d1d1f;
-  line-height: 1.4;
+  color: #FFFFFF;
+  line-height: 1.3;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .book-author {
-  font-size: 13px;
-  color: #5A3FA0;
-  font-weight: 500;
+  font-size: 12px;
+  color: #FFB847;
+  font-weight: 600;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  opacity: 0.9;
 }
 
 .add-btn {
@@ -466,27 +511,7 @@ select:focus, textarea:focus {
 .empty-state h3 {
   font-size: 20px;
   margin-bottom: 8px;
-  color: #1d1d1f;
-}
-
-.empty-state::before {
-  content: '✨';
-  position: absolute;
-  font-size: 24px;
-  animation: float 3s ease-in-out infinite;
-  top: 20px;
-  left: 20%;
-  opacity: 0.6;
-}
-
-.empty-state::after {
-  content: '🔥';
-  position: absolute;
-  font-size: 20px;
-  animation: float 4s ease-in-out infinite;
-  top: 40px;
-  right: 25%;
-  opacity: 0.5;
+  color: #F7F7FB;
 }
 
 @keyframes float {
@@ -517,33 +542,34 @@ select:focus, textarea:focus {
 }
 
 .stat-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 16px;
+  background: rgba(44, 44, 58, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
   padding: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  border: 1px solid rgba(122, 95, 208, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(122, 95, 208, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .stat-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(255, 184, 71, 0.15), 0 0 30px rgba(255, 122, 107, 0.1);
 }
 
 .stat-label {
-  font-size: 13px;
-  color: #86868b;
+  font-size: 12px;
+  color: rgba(247, 247, 251, 0.6);
   margin-bottom: 8px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   font-weight: 600;
 }
 
 .stat-value {
   font-size: 36px;
   font-weight: 700;
-  background: linear-gradient(135deg, #5A3FA0 0%, #7A5FD0 100%);
+  background: linear-gradient(135deg, #FFB847 0%, #FFC976 50%, #C98FFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -552,25 +578,25 @@ select:focus, textarea:focus {
 
 .stat-subtitle {
   font-size: 13px;
-  color: #86868b;
+  color: rgba(247, 247, 251, 0.5);
   margin-top: 4px;
 }
 
 .chart-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  background: rgba(44, 44, 58, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 24px;
+  border: 1px solid rgba(122, 95, 208, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(122, 95, 208, 0.1);
 }
 
 .chart-title {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 20px;
-  color: #1d1d1f;
+  color: #F7F7FB;
 }
 
 .genre-list {
@@ -588,17 +614,17 @@ select:focus, textarea:focus {
 .genre-bar-container {
   flex: 1;
   height: 32px;
-  background: rgba(90, 63, 160, 0.1);
-  border-radius: 8px;
+  background: rgba(28, 28, 40, 0.4);
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
 }
 
 .genre-bar {
   height: 100%;
-  background: linear-gradient(135deg, #5A3FA0 0%, #7A5FD0 100%);
-  border-radius: 8px;
-  transition: width 0.6s ease;
+  background: linear-gradient(135deg, #FFB847 0%, #FF7A6B 100%);
+  border-radius: 12px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   padding: 0 12px;
@@ -610,7 +636,7 @@ select:focus, textarea:focus {
 
 .genre-name {
   font-size: 14px;
-  color: #1d1d1f;
+  color: #F7F7FB;
   min-width: 120px;
   font-weight: 500;
 }
@@ -622,15 +648,16 @@ select:focus, textarea:focus {
 }
 
 .author-badge {
-  background: rgba(90, 63, 160, 0.1);
-  color: #5A3FA0;
+  background: rgba(255, 184, 71, 0.15);
+  color: #FFB847;
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 6px;
+  border: 1px solid rgba(255, 184, 71, 0.2);
 }
 
 .reading-streak {
@@ -657,16 +684,35 @@ select:focus, textarea:focus {
 
 /* Dark Mode Styles */
 body.dark-mode {
-  background: linear-gradient(135deg, #2F2F3A 0%, #1C1C28 100%);
+  /* Dark mode is now default - these styles ensure consistency */
 }
 
-body.dark-mode header {
-  background: rgba(44, 44, 58, 0.95);
-  border-bottom-color: rgba(122, 95, 208, 0.2);
+body.dark-mode header,
+body.dark-mode .search-section,
+body.dark-mode .chart-card,
+body.dark-mode .stat-card,
+body.dark-mode .tabs,
+body.dark-mode #libraryControls,
+body.dark-mode .modal-content,
+body.dark-mode .book-card {
+  /* Inherit default dark styles */
+}
+
+body.dark-mode .book-title,
+body.dark-mode .chart-title,
+body.dark-mode .stat-label,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode .empty-state h3 {
+  color: #F7F7FB;
+}
+
+body.dark-mode .book-author {
+  color: #FFB847;
 }
 
 body.dark-mode h1 {
-  background: linear-gradient(135deg, #7A5FD0 0%, #C98FFF 100%);
+  background: linear-gradient(135deg, #FFB847 0%, #FFC976 50%, #C98FFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -674,36 +720,7 @@ body.dark-mode h1 {
 
 body.dark-mode .subtitle {
   color: #C98FFF;
-  opacity: 0.8;
-}
-
-body.dark-mode .search-section,
-body.dark-mode .chart-card,
-body.dark-mode .stat-card,
-body.dark-mode .tabs,
-body.dark-mode #libraryControls,
-body.dark-mode .modal-content {
-  background: rgba(44, 44, 58, 0.95);
-  border-color: rgba(122, 95, 208, 0.2);
-}
-
-body.dark-mode .book-card {
-  background: rgba(44, 44, 58, 0.95);
-  border-color: rgba(122, 95, 208, 0.2);
-}
-
-body.dark-mode .book-title,
-body.dark-mode .chart-title,
-body.dark-mode .stat-label,
-body.dark-mode h2,
-body.dark-mode h3 {
-  color: #F7F7FB;
-}
-
-body.dark-mode .book-author,
-body.dark-mode .stat-subtitle,
-body.dark-mode p {
-  color: #B8B8C8;
+  opacity: 0.9;
 }
 
 body.dark-mode #searchInput,
@@ -712,22 +729,18 @@ body.dark-mode textarea,
 body.dark-mode input[type="text"],
 body.dark-mode input[type="number"],
 body.dark-mode input[type="date"] {
-  background: rgba(28, 28, 40, 0.6);
-  border-color: rgba(122, 95, 208, 0.3);
+  background: rgba(28, 28, 40, 0.4);
+  border-color: rgba(122, 95, 208, 0.2);
   color: #F7F7FB;
 }
 
 body.dark-mode .tab {
-  color: #B8B8C8;
+  color: rgba(247, 247, 251, 0.6);
 }
 
 body.dark-mode .tab.active {
-  background: linear-gradient(135deg, #5A3FA0 0%, #7A5FD0 100%);
+  background: linear-gradient(135deg, #FFB847 0%, #FF7A6B 100%);
   color: white;
-}
-
-body.dark-mode .empty-state h3 {
-  color: #F7F7FB;
 }
 
 @media (max-width: 768px) {
@@ -828,89 +841,45 @@ body.dark-mode .empty-state h3 {
 
 <header>
   <div class="container">
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-      <div>
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <img src="spark-happy.png" alt="Spark" style="width: 80px; height: auto;">
-          <div>
-            <h1>The Ember Collection</h1>
-            <div class="subtitle">Guard your spark. Build what holds it. Let it evolve.</div>
-          </div>
-        </div>
-      </div>
-      <div style="display: flex; gap: 12px;">
-        <button class="secondary-btn" id="darkModeToggle" onclick="toggleDarkMode()" style="padding: 10px 20px; font-size: 14px;">
-          🌙
-        </button>
-        <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importLibrary(event)">
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="spark-happy.png" alt="Spark" style="width: 100px; height: auto;">
+        <h1 style="font-size: 26px; margin: 0;">The Ember Collection</h1>
       </div>
     </div>
+    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importLibrary(event)">
   </div>
 </header>
 
 <div class="container">
-  <div class="search-section">
-    <h2 style="margin-bottom: 16px; font-size: 20px;">Add a book</h2>
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Search by title, author, or ISBN...">
-      <button onclick="searchBooks()">Search</button>
-      <button class="secondary-btn" onclick="startBarcodeScanner()">
-        <span style="font-size: 20px; margin-right: 4px;">📷</span> Scan Barcode
-      </button>
-    </div>
-    <div id="scannerContainer" style="display: none; margin-top: 16px; background: rgba(90, 63, 160, 0.05); padding: 20px; border-radius: 12px; border: 2px dashed rgba(90, 63, 160, 0.3);">
-      <div style="text-align: center; margin-bottom: 16px;">
-        <div style="font-size: 48px; margin-bottom: 8px;">📸</div>
-        <div style="font-size: 16px; font-weight: 600; color: #1d1d1f; margin-bottom: 8px;">Add Book by ISBN</div>
-        <div style="font-size: 13px; color: #86868b; line-height: 1.5;">
-          Take a clear photo of the barcode on the back of the book, or enter the ISBN manually below.
-        </div>
-      </div>
-      
-      <input type="file" id="barcodeImageInput" accept="image/*" capture="environment" style="display: none;" onchange="processBarcodeImage(event)">
-      
-      <button onclick="document.getElementById('barcodeImageInput').click()" style="width: 100%; margin-bottom: 16px; background: linear-gradient(135deg, #FFB847 0%, #FF7A6B 100%); display: flex; align-items: center; justify-content: center; gap: 8px;">
-        <span style="font-size: 20px;">📷</span>
-        <span>Take Photo of Barcode</span>
-      </button>
-      
-      <div style="margin: 16px 0; text-align: center; color: #86868b; font-size: 13px; font-weight: 600;">OR ENTER MANUALLY</div>
-      
-      <input type="text" id="manualISBN" placeholder="Enter ISBN (e.g., 9780143127741)" style="width: 100%; padding: 14px 16px; border: 2px solid rgba(90, 63, 160, 0.2); border-radius: 12px; font-size: 16px; outline: none; margin-bottom: 12px;" inputmode="numeric">
-      
-      <div style="display: flex; gap: 12px;">
-        <button onclick="searchManualISBN()" style="flex: 1;">
-          <span>🔍</span> Search ISBN
-        </button>
-        <button class="secondary-btn" onclick="stopBarcodeScanner()" style="flex: 1;">Cancel</button>
-      </div>
-      
-      <canvas id="barcodeCanvas" style="display: none;"></canvas>
-      
-      <div style="margin-top: 16px; padding: 12px; background: rgba(255, 184, 71, 0.1); border-radius: 8px; font-size: 12px; color: #86868b; line-height: 1.5;">
-        <strong style="color: #FFB847;">💡 Tip:</strong> ISBN barcodes are usually on the back cover near the price. Make sure the barcode is well-lit and in focus!
-      </div>
-    </div>
-    <div id="searchResults"></div>
-  </div>
-
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('dashboard')">📊 Dashboard</button>
-    <button class="tab" onclick="switchTab('all')">All Books</button>
-    <button class="tab" onclick="switchTab('want')">Want to buy</button>
-    <button class="tab" onclick="switchTab('unread')">Unread</button>
-    <button class="tab" onclick="switchTab('reading')">Currently reading</button>
-    <button class="tab" onclick="switchTab('finished')">Finished</button>
-    <button class="tab" onclick="switchTab('settings')">⚙️ Settings</button>
+    <button class="tab active" onclick="switchTab('dashboard')"><span class="tab-icon">📊</span><span class="tab-text"> Dashboard</span></button>
+    <button class="tab" onclick="switchTab('all')">📚 All Books</button>
+    <button class="tab" onclick="switchTab('want')">🛒 Want to buy</button>
+    <button class="tab" onclick="switchTab('unread')">📖 Unread</button>
+    <button class="tab" onclick="switchTab('reading')">👀 Currently reading</button>
+    <button class="tab" onclick="switchTab('finished')">✅ Finished</button>
+    <button class="tab" onclick="switchTab('settings')"><span class="tab-icon">⚙️</span><span class="tab-text"> Settings</span></button>
   </div>
+  
+  <!-- Search section will be rendered dynamically in dashboard -->
+  <div id="searchSectionContainer"></div>
 
-  <div id="libraryControls" style="display: none; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px; padding: 20px; margin-bottom: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255, 255, 255, 0.3);">
+  <div id="libraryControls" style="display: none; background: rgba(44, 44, 58, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 20px; padding: 16px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); border: 1px solid rgba(122, 95, 208, 0.15);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+      <h2 style="margin: 0; font-size: 16px; font-weight: 700; color: #F7F7FB;">Search & Filter</h2>
+      <button class="secondary-btn" onclick="toggleLibraryControls()" style="padding: 6px 14px; font-size: 12px;" id="libraryToggle">
+        ▶ Show
+      </button>
+    </div>
+    
+    <div id="libraryControlsContent" style="display: none;">
     <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px;">
-      <input type="text" id="librarySearch" placeholder="Search books..." style="flex: 1; min-width: 200px; padding: 12px 16px; border: 2px solid rgba(90, 63, 160, 0.2); border-radius: 12px; font-size: 15px; outline: none; transition: all 0.3s ease;">
-      <select id="filterGenre" style="padding: 12px 16px; border: 2px solid rgba(90, 63, 160, 0.2); border-radius: 12px; font-size: 15px; outline: none; cursor: pointer;">
+      <input type="text" id="librarySearch" placeholder="Search books..." style="flex: 1; min-width: 200px; padding: 12px 16px; border: 2px solid rgba(122, 95, 208, 0.2); border-radius: 12px; font-size: 15px; outline: none; transition: all 0.3s ease; background: rgba(28, 28, 40, 0.4); color: #F7F7FB;">
+      <select id="filterGenre" style="padding: 12px 16px; border: 2px solid rgba(122, 95, 208, 0.2); border-radius: 12px; font-size: 15px; outline: none; cursor: pointer; background: rgba(28, 28, 40, 0.4); color: #F7F7FB;">
         <option value="">All Genres</option>
       </select>
-      <select id="filterRating" style="padding: 12px 16px; border: 2px solid rgba(90, 63, 160, 0.2); border-radius: 12px; font-size: 15px; outline: none; cursor: pointer;">
+      <select id="filterRating" style="padding: 12px 16px; border: 2px solid rgba(122, 95, 208, 0.2); border-radius: 12px; font-size: 15px; outline: none; cursor: pointer; background: rgba(28, 28, 40, 0.4); color: #F7F7FB;">
         <option value="">All Ratings</option>
         <option value="5">★★★★★</option>
         <option value="4">★★★★☆</option>
@@ -918,7 +887,7 @@ body.dark-mode .empty-state h3 {
         <option value="2">★★☆☆☆</option>
         <option value="1">★☆☆☆☆</option>
       </select>
-      <select id="sortBy" style="padding: 12px 16px; border: 2px solid rgba(90, 63, 160, 0.2); border-radius: 12px; font-size: 15px; outline: none; cursor: pointer;">
+      <select id="sortBy" style="padding: 12px 16px; border: 2px solid rgba(122, 95, 208, 0.2); border-radius: 12px; font-size: 15px; outline: none; cursor: pointer; background: rgba(28, 28, 40, 0.4); color: #F7F7FB;">
         <option value="dateAdded">Recently Added</option>
         <option value="priority">Priority (High to Low)</option>
         <option value="title">Title A-Z</option>
@@ -928,13 +897,14 @@ body.dark-mode .empty-state h3 {
     </div>
     
     <!-- Bulk Actions -->
-    <div id="bulkActionsBar" style="display: none; padding: 12px; background: rgba(90, 63, 160, 0.1); border-radius: 12px; margin-top: 12px;">
+    <div id="bulkActionsBar" style="display: none; padding: 12px; background: rgba(122, 95, 208, 0.1); border-radius: 12px; margin-top: 12px;">
       <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-        <span style="font-size: 14px; font-weight: 500; color: #5A3FA0;"><span id="selectedCount">0</span> selected</span>
+        <span style="font-size: 14px; font-weight: 500; color: #FFB847;"><span id="selectedCount">0</span> selected</span>
         <button onclick="bulkChangeStatus()" class="secondary-btn" style="padding: 8px 16px; font-size: 14px;">Change Status</button>
         <button onclick="bulkDelete()" class="secondary-btn" style="padding: 8px 16px; font-size: 14px; background: rgba(255, 107, 107, 0.1); color: #ff6b6b; border-color: rgba(255, 107, 107, 0.3);">Delete Selected</button>
         <button onclick="clearSelection()" class="secondary-btn" style="padding: 8px 16px; font-size: 14px;">Clear Selection</button>
       </div>
+    </div>
     </div>
   </div>
 
@@ -1716,6 +1686,7 @@ function switchTab(tab) {
 function renderBooks() {
   const container = document.getElementById('booksContainer');
   const libraryControls = document.getElementById('libraryControls');
+  const searchContainer = document.getElementById('searchSectionContainer');
   
   // Show dashboard
   if (currentTab === 'dashboard') {
@@ -1723,6 +1694,9 @@ function renderBooks() {
     renderDashboard();
     return;
   }
+  
+  // Clear search section when not on dashboard
+  searchContainer.innerHTML = '';
   
   // Show settings
   if (currentTab === 'settings') {
@@ -1874,20 +1848,20 @@ function renderSettings() {
     <div class="dashboard">
       <!-- Reading Goals Section -->
       <div class="chart-card">
-        <h3 style="font-size: 18px; margin-bottom: 20px; font-weight: 600;">📚 Reading Goals</h3>
+        <h3 style="font-size: 18px; margin-bottom: 20px; font-weight: 600; color: #F7F7FB;">📚 Reading Goals</h3>
         
         <div class="form-group">
-          <label>Yearly Goal (books to read in 2026)</label>
-          <input type="number" id="settingsYearlyGoalPage" min="1" placeholder="e.g., 50" value="${readingGoal || ''}" style="width: 100%; padding: 14px 16px; border: 2px solid rgba(90, 63, 160, 0.2); border-radius: 12px; font-size: 16px; outline: none;">
+          <label style="color: #F7F7FB; font-weight: 600;">Yearly Goal (books to read in 2026)</label>
+          <input type="number" id="settingsYearlyGoalPage" min="1" placeholder="e.g., 50" value="${readingGoal || ''}" style="width: 100%; padding: 14px 16px; border: 2px solid rgba(122, 95, 208, 0.2); border-radius: 12px; font-size: 16px; outline: none; background: rgba(28, 28, 40, 0.4); color: #F7F7FB;">
         </div>
 
-        <div style="margin-top: 20px; padding: 20px; background: rgba(90, 63, 160, 0.05); border-radius: 12px;">
-          <div style="font-size: 14px; color: #5A3FA0; margin-bottom: 8px; font-weight: 600;">Current Progress</div>
-          <div style="font-size: 24px; font-weight: 700; color: #1d1d1f; margin-bottom: 12px;">${finishedCount} / ${readingGoal || 0} books</div>
-          <div style="height: 12px; background: rgba(90, 63, 160, 0.2); border-radius: 6px; overflow: hidden;">
-            <div style="height: 100%; background: linear-gradient(135deg, #5A3FA0 0%, #7A5FD0 100%); width: ${percentage}%; transition: width 0.6s ease;"></div>
+        <div style="margin-top: 20px; padding: 20px; background: rgba(122, 95, 208, 0.1); border-radius: 12px;">
+          <div style="font-size: 14px; color: #FFB847; margin-bottom: 8px; font-weight: 600;">Current Progress</div>
+          <div style="font-size: 24px; font-weight: 700; color: #F7F7FB; margin-bottom: 12px;">${finishedCount} / ${readingGoal || 0} books</div>
+          <div style="height: 12px; background: rgba(28, 28, 40, 0.4); border-radius: 6px; overflow: hidden;">
+            <div style="height: 100%; background: linear-gradient(135deg, #FFB847 0%, #FF7A6B 100%); width: ${percentage}%; transition: width 0.6s ease;"></div>
           </div>
-          ${readingGoal > 0 ? `<div style="margin-top: 12px; font-size: 14px; color: #5A3FA0; font-weight: 500;">
+          ${readingGoal > 0 ? `<div style="margin-top: 12px; font-size: 14px; color: #FFB847; font-weight: 500;">
             ${finishedCount >= readingGoal ? `<div style="display: flex; align-items: center; justify-content: center; gap: 8px;"><img src="spark-celebrating.png" alt="Spark celebrating" style="width: 30px; height: auto;"> <span>Amazing! You hit your goal! Ready for a bigger challenge?</span></div>` : `Keep going! Just ${readingGoal - finishedCount} more to go 📚`}
           </div>` : ''}
         </div>
@@ -1897,7 +1871,7 @@ function renderSettings() {
 
       <!-- Data Management Section -->
       <div class="chart-card">
-        <h3 style="font-size: 18px; margin-bottom: 20px; font-weight: 600;">💾 Data Management</h3>
+        <h3 style="font-size: 18px; margin-bottom: 20px; font-weight: 600; color: #F7F7FB;">💾 Data Management</h3>
         
         <div style="display: flex; flex-direction: column; gap: 12px;">
           <button onclick="exportLibrary()" style="width: 100%; justify-content: center; display: flex; align-items: center; gap: 8px;">
@@ -1910,72 +1884,72 @@ function renderSettings() {
             <span>Import Library</span>
           </button>
 
-          <div style="font-size: 13px; color: #86868b; margin-top: 8px; padding: 16px; background: rgba(90, 63, 160, 0.05); border-radius: 8px; line-height: 1.5;">
-            <strong>💡 Keep your spark alive:</strong><br>
+          <div style="font-size: 13px; color: rgba(247, 247, 251, 0.7); margin-top: 8px; padding: 16px; background: rgba(122, 95, 208, 0.1); border-radius: 8px; line-height: 1.5;">
+            <strong style="color: #FFB847;">💡 Keep your spark alive:</strong><br>
             Export regularly to keep your collection safe, and use import to sync between devices. Your books, your way, everywhere you go!
-            ${lastBackupDate ? `<br><br><strong>Last backup:</strong> ${new Date(lastBackupDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}` : ''}
+            ${lastBackupDate ? `<br><br><strong style="color: #F7F7FB;">Last backup:</strong> ${new Date(lastBackupDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}` : ''}
           </div>
         </div>
       </div>
 
       <!-- About Section -->
       <div class="chart-card">
-        <h3 style="font-size: 18px; margin-bottom: 20px; font-weight: 600;">ℹ️ About</h3>
-        <div style="font-size: 14px; color: #86868b; line-height: 1.8;">
-          <p style="margin-bottom: 12px; font-size: 16px; color: #1d1d1f; font-weight: 600;">The Ember Collection</p>
-          <p style="margin-bottom: 8px; font-style: italic; color: #5A3FA0;">"Guard your spark. Build what holds it. Let it evolve."</p>
+        <h3 style="font-size: 18px; margin-bottom: 20px; font-weight: 600; color: #F7F7FB;">ℹ️ About</h3>
+        <div style="font-size: 14px; color: rgba(247, 247, 251, 0.7); line-height: 1.8;">
+          <p style="margin-bottom: 12px; font-size: 16px; color: #F7F7FB; font-weight: 600;">The Ember Collection</p>
+          <p style="margin-bottom: 8px; font-style: italic; color: #C98FFF;">"Guard your spark. Build what holds it. Let it evolve."</p>
           <p style="margin-bottom: 8px;">Version 1.0</p>
           <p style="margin-bottom: 16px;">Your personal reading companion, crafted with care 💜</p>
-          <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(90, 63, 160, 0.1);">
-            <strong style="color: #1d1d1f;">Your Collection:</strong> ${Object.keys(myBooks).length} book${Object.keys(myBooks).length === 1 ? '' : 's'}<br>
-            <strong style="color: #1d1d1f;">Books Finished:</strong> ${finishedCount} book${finishedCount === 1 ? '' : 's'}
+          <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(122, 95, 208, 0.2);">
+            <strong style="color: #F7F7FB;">Your Collection:</strong> ${Object.keys(myBooks).length} book${Object.keys(myBooks).length === 1 ? '' : 's'}<br>
+            <strong style="color: #F7F7FB;">Books Finished:</strong> ${finishedCount} book${finishedCount === 1 ? '' : 's'}
           </p>
         </div>
       </div>
 
       <!-- Privacy & Security Section -->
       <div class="chart-card">
-        <h3 style="font-size: 18px; margin-bottom: 20px; font-weight: 600;">🔒 Privacy & Security</h3>
-        <div style="font-size: 14px; color: #86868b; line-height: 1.8;">
-          <p style="margin-bottom: 16px; color: #1d1d1f;"><strong>Your data is completely private and secure:</strong></p>
+        <h3 style="font-size: 18px; margin-bottom: 20px; font-weight: 600; color: #F7F7FB;">🔒 Privacy & Security</h3>
+        <div style="font-size: 14px; color: rgba(247, 247, 251, 0.7); line-height: 1.8;">
+          <p style="margin-bottom: 16px; color: #F7F7FB;"><strong>Your data is completely private and secure:</strong></p>
           
           <div style="display: grid; gap: 12px;">
             <div style="display: flex; gap: 12px; align-items: start;">
-              <span style="color: #5A3FA0; font-size: 18px;">✓</span>
+              <span style="color: #FFB847; font-size: 18px;">✓</span>
               <div>
-                <strong style="color: #1d1d1f;">100% Local Storage</strong><br>
+                <strong style="color: #F7F7FB;">100% Local Storage</strong><br>
                 All your books, notes, and ratings are stored only on your device using IndexedDB. Nothing is sent to any server.
               </div>
             </div>
             
             <div style="display: flex; gap: 12px; align-items: start;">
-              <span style="color: #5A3FA0; font-size: 18px;">✓</span>
+              <span style="color: #FFB847; font-size: 18px;">✓</span>
               <div>
-                <strong style="color: #1d1d1f;">No Tracking</strong><br>
+                <strong style="color: #F7F7FB;">No Tracking</strong><br>
                 Zero analytics, no cookies, no tracking pixels. Your reading habits are yours alone.
               </div>
             </div>
             
             <div style="display: flex; gap: 12px; align-items: start;">
-              <span style="color: #5A3FA0; font-size: 18px;">✓</span>
+              <span style="color: #FFB847; font-size: 18px;">✓</span>
               <div>
-                <strong style="color: #1d1d1f;">No Account Required</strong><br>
+                <strong style="color: #F7F7FB;">No Account Required</strong><br>
                 No login, no email, no personal information collected. Ever.
               </div>
             </div>
             
             <div style="display: flex; gap: 12px; align-items: start;">
-              <span style="color: #5A3FA0; font-size: 18px;">✓</span>
+              <span style="color: #FFB847; font-size: 18px;">✓</span>
               <div>
-                <strong style="color: #1d1d1f;">Works Offline</strong><br>
+                <strong style="color: #F7F7FB;">Works Offline</strong><br>
                 Your library works completely offline after the first load. No internet required.
               </div>
             </div>
             
             <div style="display: flex; gap: 12px; align-items: start;">
-              <span style="color: #5A3FA0; font-size: 18px;">✓</span>
+              <span style="color: #FFB847; font-size: 18px;">✓</span>
               <div>
-                <strong style="color: #1d1d1f;">Your Data, Your Control</strong><br>
+                <strong style="color: #F7F7FB;">Your Data, Your Control</strong><br>
                 Export anytime, delete anytime. You have complete control over your library data.
               </div>
             </div>
@@ -1992,7 +1966,64 @@ function renderSettings() {
 
 function renderDashboard() {
   const container = document.getElementById('booksContainer');
+  const searchContainer = document.getElementById('searchSectionContainer');
   const allBooks = Object.values(myBooks);
+  
+  // Render search section on dashboard
+  searchContainer.innerHTML = `
+    <div class="search-section">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h2 style="margin: 0; font-size: 18px; font-weight: 700; color: #F7F7FB;">Add Books</h2>
+        <button class="secondary-btn" onclick="toggleSearch()" style="padding: 6px 14px; font-size: 12px;" id="searchToggle">
+          ▶ Show
+        </button>
+      </div>
+      
+      <div id="searchContent" style="display: none;">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search by title, author, or ISBN...">
+        <button onclick="searchBooks()">Search</button>
+        <button class="secondary-btn" onclick="startBarcodeScanner()">
+          <span style="font-size: 20px; margin-right: 4px;">📷</span> Scan Barcode
+        </button>
+      </div>
+      <div id="scannerContainer" style="display: none; margin-top: 16px; background: rgba(90, 63, 160, 0.05); padding: 20px; border-radius: 12px; border: 2px dashed rgba(90, 63, 160, 0.3);">
+        <div style="text-align: center; margin-bottom: 16px;">
+          <div style="font-size: 48px; margin-bottom: 8px;">📸</div>
+          <div style="font-size: 16px; font-weight: 600; color: #F7F7FB; margin-bottom: 8px;">Add Book by ISBN</div>
+          <div style="font-size: 13px; color: rgba(247, 247, 251, 0.6); line-height: 1.5;">
+            Take a clear photo of the barcode on the back of the book, or enter the ISBN manually below.
+          </div>
+        </div>
+        
+        <input type="file" id="barcodeImageInput" accept="image/*" capture="environment" style="display: none;" onchange="processBarcodeImage(event)">
+        
+        <button onclick="document.getElementById('barcodeImageInput').click()" style="width: 100%; margin-bottom: 16px; background: linear-gradient(135deg, #FFB847 0%, #FF7A6B 100%); display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <span style="font-size: 20px;">📷</span>
+          <span>Take Photo of Barcode</span>
+        </button>
+        
+        <div style="margin: 16px 0; text-align: center; color: rgba(247, 247, 251, 0.6); font-size: 13px; font-weight: 600;">OR ENTER MANUALLY</div>
+        
+        <input type="text" id="manualISBN" placeholder="Enter ISBN (e.g., 9780143127741)" style="width: 100%; padding: 14px 16px; border: 2px solid rgba(122, 95, 208, 0.2); border-radius: 12px; font-size: 16px; outline: none; margin-bottom: 12px; background: rgba(28, 28, 40, 0.4); color: #F7F7FB;" inputmode="numeric">
+        
+        <div style="display: flex; gap: 12px;">
+          <button onclick="searchManualISBN()" style="flex: 1;">
+            <span>🔍</span> Search ISBN
+          </button>
+          <button class="secondary-btn" onclick="stopBarcodeScanner()" style="flex: 1;">Cancel</button>
+        </div>
+        
+        <canvas id="barcodeCanvas" style="display: none;"></canvas>
+        
+        <div style="margin-top: 16px; padding: 12px; background: rgba(255, 184, 71, 0.1); border-radius: 8px; font-size: 12px; color: rgba(247, 247, 251, 0.6); line-height: 1.5;">
+          <strong style="color: #FFB847;">💡 Tip:</strong> ISBN barcodes are usually on the back cover near the price. Make sure the barcode is well-lit and in focus!
+        </div>
+      </div>
+      <div id="searchResults"></div>
+      </div>
+    </div>
+  `;
   
   if (allBooks.length === 0) {
     container.innerHTML = `
@@ -2295,6 +2326,34 @@ function filterAndSortBooks(books) {
 }
 
 // Dark mode toggle
+// Toggle search section visibility
+function toggleSearch() {
+  const content = document.getElementById('searchContent');
+  const toggle = document.getElementById('searchToggle');
+  
+  if (content.style.display === 'none') {
+    content.style.display = 'block';
+    toggle.textContent = '▼ Hide';
+  } else {
+    content.style.display = 'none';
+    toggle.textContent = '▶ Show';
+  }
+}
+
+// Toggle library controls visibility
+function toggleLibraryControls() {
+  const content = document.getElementById('libraryControlsContent');
+  const toggle = document.getElementById('libraryToggle');
+  
+  if (content.style.display === 'none') {
+    content.style.display = 'block';
+    toggle.textContent = '▼ Hide';
+  } else {
+    content.style.display = 'none';
+    toggle.textContent = '▶ Show';
+  }
+}
+
 function toggleDarkMode() {
   darkMode = !darkMode;
   document.body.classList.toggle('dark-mode');
@@ -2439,39 +2498,79 @@ async function processBarcodeImage(event) {
       img.src = imageUrl;
     });
 
-    // Draw to canvas
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
+    // Resize image if too large (helps with detection)
+    const maxWidth = 1200;
+    const maxHeight = 1200;
+    let width = img.width;
+    let height = img.height;
     
-    console.log('Image drawn to canvas');
+    if (width > maxWidth || height > maxHeight) {
+      const ratio = Math.min(maxWidth / width, maxHeight / height);
+      width = width * ratio;
+      height = height * ratio;
+    }
+
+    canvas.width = width;
+    canvas.height = height;
+    ctx.drawImage(img, 0, 0, width, height);
+    
+    console.log('Image drawn to canvas at:', width, 'x', height);
+
+    // Show the image to user for debugging
+    const imagePreview = document.createElement('img');
+    imagePreview.src = canvas.toDataURL('image/jpeg', 0.8);
+    imagePreview.style.cssText = 'max-width: 100%; border-radius: 8px; margin: 12px 0;';
+    searchResults.innerHTML = '<div style="text-align: center;"><div class="loading">Analyzing barcode...</div></div>';
+    searchResults.appendChild(imagePreview);
 
     // Clean up object URL
     URL.revokeObjectURL(imageUrl);
 
-    // Try to decode barcode
-    const result = await new Promise((resolve, reject) => {
-      Quagga.decodeSingle({
-        src: canvas.toDataURL('image/jpeg', 0.8),
-        numOfWorkers: 0,
-        decoder: {
-          readers: ["ean_reader", "ean_8_reader", "code_128_reader", "upc_reader", "upc_e_reader", "code_39_reader"]
-        },
-        locate: true
-      }, function(result) {
-        console.log('Quagga result:', result);
-        if (result && result.codeResult) {
-          resolve(result.codeResult.code);
-        } else {
-          reject(new Error('No barcode found'));
-        }
-      });
-    });
+    // Try to decode barcode with multiple attempts
+    let barcodeFound = false;
+    let detectedCode = null;
 
-    console.log('Barcode detected:', result);
-    stopBarcodeScanner();
-    searchResults.innerHTML = '';
-    await searchByISBN(result);
+    // Attempt 1: Original image
+    console.log('Attempt 1: Trying original image');
+    try {
+      detectedCode = await tryDecodeBarcode(canvas.toDataURL('image/jpeg', 0.8));
+      barcodeFound = true;
+    } catch (e) {
+      console.log('Attempt 1 failed:', e.message);
+    }
+
+    // Attempt 2: Increase contrast
+    if (!barcodeFound) {
+      console.log('Attempt 2: Trying with increased contrast');
+      const contrastCanvas = increaseContrast(canvas);
+      try {
+        detectedCode = await tryDecodeBarcode(contrastCanvas.toDataURL('image/jpeg', 0.8));
+        barcodeFound = true;
+      } catch (e) {
+        console.log('Attempt 2 failed:', e.message);
+      }
+    }
+
+    // Attempt 3: Convert to grayscale
+    if (!barcodeFound) {
+      console.log('Attempt 3: Trying grayscale');
+      const grayCanvas = convertToGrayscale(canvas);
+      try {
+        detectedCode = await tryDecodeBarcode(grayCanvas.toDataURL('image/jpeg', 0.8));
+        barcodeFound = true;
+      } catch (e) {
+        console.log('Attempt 3 failed:', e.message);
+      }
+    }
+
+    if (barcodeFound && detectedCode) {
+      console.log('Barcode detected:', detectedCode);
+      stopBarcodeScanner();
+      searchResults.innerHTML = '';
+      await searchByISBN(detectedCode);
+    } else {
+      throw new Error('No barcode detected after all attempts');
+    }
     
   } catch (err) {
     console.error('Barcode detection failed:', err);
@@ -2489,6 +2588,72 @@ async function processBarcodeImage(event) {
     // Reset file input
     event.target.value = '';
   }
+}
+
+function tryDecodeBarcode(imageSrc) {
+  return new Promise((resolve, reject) => {
+    Quagga.decodeSingle({
+      src: imageSrc,
+      numOfWorkers: 0,
+      decoder: {
+        readers: ["ean_reader", "ean_8_reader", "code_128_reader", "code_39_reader", "upc_reader", "upc_e_reader", "codabar_reader"]
+      },
+      locate: true,
+      locator: {
+        patchSize: "medium",
+        halfSample: true
+      }
+    }, function(result) {
+      console.log('Quagga result:', result);
+      if (result && result.codeResult && result.codeResult.code) {
+        resolve(result.codeResult.code);
+      } else {
+        reject(new Error('No barcode found in image'));
+      }
+    });
+  });
+}
+
+function increaseContrast(sourceCanvas) {
+  const canvas = document.createElement('canvas');
+  canvas.width = sourceCanvas.width;
+  canvas.height = sourceCanvas.height;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(sourceCanvas, 0, 0);
+  
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const data = imageData.data;
+  const factor = 1.5; // Contrast factor
+  
+  for (let i = 0; i < data.length; i += 4) {
+    data[i] = ((data[i] - 128) * factor) + 128;     // Red
+    data[i + 1] = ((data[i + 1] - 128) * factor) + 128; // Green
+    data[i + 2] = ((data[i + 2] - 128) * factor) + 128; // Blue
+  }
+  
+  ctx.putImageData(imageData, 0, 0);
+  return canvas;
+}
+
+function convertToGrayscale(sourceCanvas) {
+  const canvas = document.createElement('canvas');
+  canvas.width = sourceCanvas.width;
+  canvas.height = sourceCanvas.height;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(sourceCanvas, 0, 0);
+  
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const data = imageData.data;
+  
+  for (let i = 0; i < data.length; i += 4) {
+    const gray = data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114;
+    data[i] = gray;     // Red
+    data[i + 1] = gray; // Green
+    data[i + 2] = gray; // Blue
+  }
+  
+  ctx.putImageData(imageData, 0, 0);
+  return canvas;
 }
 
 async function searchByISBN(isbn) {
