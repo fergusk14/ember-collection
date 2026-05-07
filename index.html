@@ -2412,64 +2412,83 @@ async function processBarcodeImage(event) {
   const file = event.target.files[0];
   if (!file) return;
 
+  console.log('File selected:', file.name, file.type, file.size);
+
   const canvas = document.getElementById('barcodeCanvas');
   const ctx = canvas.getContext('2d');
-  const img = new Image();
-
+  
   // Show loading state
   const searchResults = document.getElementById('searchResults');
   searchResults.innerHTML = '<div class="loading">Processing barcode image...</div>';
 
-  img.onload = async function() {
+  try {
+    // Create image from file using createObjectURL
+    const imageUrl = URL.createObjectURL(file);
+    const img = new Image();
+    
+    // Wait for image to load
+    await new Promise((resolve, reject) => {
+      img.onload = () => {
+        console.log('Image loaded successfully:', img.width, 'x', img.height);
+        resolve();
+      };
+      img.onerror = (error) => {
+        console.error('Image load error:', error);
+        reject(new Error('Failed to load image'));
+      };
+      img.src = imageUrl;
+    });
+
+    // Draw to canvas
     canvas.width = img.width;
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0);
+    
+    console.log('Image drawn to canvas');
 
-    try {
-      // Use QuaggaJS to decode from image
-      const result = await new Promise((resolve, reject) => {
-        Quagga.decodeSingle({
-          src: canvas.toDataURL(),
-          numOfWorkers: 0,
-          decoder: {
-            readers: ["ean_reader", "ean_8_reader", "code_128_reader", "upc_reader", "upc_e_reader"]
-          },
-          locate: true
-        }, function(result) {
-          if (result && result.codeResult) {
-            resolve(result.codeResult.code);
-          } else {
-            reject(new Error('No barcode found'));
-          }
-        });
+    // Clean up object URL
+    URL.revokeObjectURL(imageUrl);
+
+    // Try to decode barcode
+    const result = await new Promise((resolve, reject) => {
+      Quagga.decodeSingle({
+        src: canvas.toDataURL('image/jpeg', 0.8),
+        numOfWorkers: 0,
+        decoder: {
+          readers: ["ean_reader", "ean_8_reader", "code_128_reader", "upc_reader", "upc_e_reader", "code_39_reader"]
+        },
+        locate: true
+      }, function(result) {
+        console.log('Quagga result:', result);
+        if (result && result.codeResult) {
+          resolve(result.codeResult.code);
+        } else {
+          reject(new Error('No barcode found'));
+        }
       });
+    });
 
-      console.log('Barcode detected:', result);
-      stopBarcodeScanner();
-      searchResults.innerHTML = '';
-      await searchByISBN(result);
-    } catch (err) {
-      console.error('Barcode detection failed:', err);
-      searchResults.innerHTML = '';
-      
-      // Show helpful message with manual entry option
-      const manualEntry = confirm('Could not detect barcode in image. The lighting or angle might not be clear enough.\n\nWould you like to enter the ISBN manually instead?');
-      if (manualEntry) {
-        // Keep scanner open for manual entry
-        document.getElementById('manualISBN').focus();
-      } else {
-        stopBarcodeScanner();
-      }
-    }
-  };
-
-  img.onerror = function() {
-    searchResults.innerHTML = '';
-    alert('Failed to load image. Please try again.');
+    console.log('Barcode detected:', result);
     stopBarcodeScanner();
-  };
-
-  img.src = URL.createObjectURL(file);
+    searchResults.innerHTML = '';
+    await searchByISBN(result);
+    
+  } catch (err) {
+    console.error('Barcode detection failed:', err);
+    searchResults.innerHTML = '';
+    
+    // Show helpful message with manual entry option
+    const manualEntry = confirm('Could not detect barcode in image. The lighting or angle might not be clear enough.\n\nWould you like to enter the ISBN manually instead?');
+    if (manualEntry) {
+      // Keep scanner open for manual entry
+      document.getElementById('manualISBN').focus();
+    } else {
+      stopBarcodeScanner();
+    }
+  } finally {
+    // Reset file input
+    event.target.value = '';
+  }
 }
 
 async function searchByISBN(isbn) {
